@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { Instagram, Facebook, MessageCircle, Video } from "lucide-react"
 import SuggestionForm from "../components/SuggestionForm"
 import "./globals.css"
 
@@ -27,22 +28,59 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={inter.className}>
-        <header className="bg-pink-600 text-white shadow-md">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
+        <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm text-slate-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 className="text-xl font-bold">Meu Cronograma Capilar</h1>
-            <nav className="space-x-4 text-sm font-medium">
-              <a href="/" className="hover:text-pink-200">Início</a>
-              <a href="#produtos" className="hover:text-pink-200">Produtos</a>
+            <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
+              <a href="/" className="hover:text-pink-600 transition-colors">Meu Cronograma Capilar</a>
+            </h1>
+            <nav className="space-x-8 text-sm font-semibold tracking-wide">
+              <a href="/" className="text-slate-600 hover:text-pink-600 transition-colors">Início</a>
+              <a href="/produtos" className="text-slate-600 hover:text-pink-600 transition-colors">Produtos</a>
             </nav>
           </div>
         </header>
-        <main className="min-h-screen bg-gray-50 pb-12">
+        <main className="min-h-screen">
           {children}
         </main>
-        <footer className="bg-gray-900 text-white py-8 text-center">
-          <p className="text-sm text-gray-400">© {new Date().getFullYear()} Meu Cronograma Capilar. Todos os direitos reservados.</p>
+        <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">Meu Cronograma Capilar</h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Transforme seus fios com rotinas de cuidado, resenhas honestas e dicas diárias de hidratação, nutrição e reconstrução.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Navegação</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="/" className="hover:text-pink-400 transition-colors">Início</a></li>
+                <li><a href="/produtos" className="hover:text-pink-400 transition-colors">Nossas Recomendações</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Redes Sociais</h4>
+              <div className="flex space-x-4">
+                <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 transition-colors text-slate-400 hover:text-white" title="Instagram">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 transition-colors text-slate-400 hover:text-white" title="Facebook">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 transition-colors text-slate-400 hover:text-white" title="WhatsApp">
+                  <MessageCircle className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 transition-colors text-slate-400 hover:text-white" title="TikTok">
+                  {/* Ícone genérico de vídeo para o TikTok ou um SVG custom */}
+                  <Video className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
+            <p>© {new Date().getFullYear()} Meu Cronograma Capilar. Todos os direitos reservados.</p>
+          </div>
         </footer>
         <SuggestionForm />
       </body>

@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { ShoppingCart } from 'lucide-react'
+import { supabase } from '../lib/supabase'
+import { hexToBase64 } from '../lib/utils'
 
 export interface ProductProps {
   id: string
@@ -19,21 +21,11 @@ export default function ProductCard({ product, postId }: { product: ProductProps
   const handleOutboundClick = async () => {
     // Edge Function para tracking de cliques assíncrono
     try {
-      fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/track-click`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
-        },
-        body: JSON.stringify({
-          blog_id: blogId,
-          post_id: postId,
-          product_id: product.id,
-          clicked_url: product.shopee_url,
-          referrer_url: typeof window !== 'undefined' ? window.location.href : '',
-        }),
-        keepalive: true
-      })
+      supabase.from('link_clicks').insert({
+        blog_id: blogId,
+        post_id: postId,
+        product_id: product.id,
+      }).then()
     } catch (e) {
       // Ignora erros para não travar a navegação
     }
