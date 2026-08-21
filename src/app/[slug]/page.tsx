@@ -408,7 +408,6 @@ export default async function PostPage({ params, searchParams }: Props) {
                     {/* Flush final caso o texto acabe e ainda tenham imagens pendentes */}
                     {flushPendingImages()}
                   </div>
-                  </div>
 
                   {/* Tags */}
                   {post.tags && post.tags.length > 0 && (

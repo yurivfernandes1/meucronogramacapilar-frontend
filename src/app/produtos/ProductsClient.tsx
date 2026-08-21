@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Search, ChevronLeft, ChevronRight, SlidersHorizontal, X } from 'lucide-react'
+import Base64Image from '@/components/Base64Image'
 
 export default function ProductsClient({ initialProducts }: { initialProducts: any[] }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -138,10 +139,6 @@ export default function ProductsClient({ initialProducts }: { initialProducts: a
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               {paginatedProducts.map(product => {
-                const imageUrl = product.base64Image && product.image_mime 
-                  ? \`data:\${product.image_mime};base64,\${product.base64Image}\`
-                  : 'https://via.placeholder.com/400?text=Sem+Foto'
-
                 return (
                   <a 
                     key={product.id} 
@@ -151,10 +148,12 @@ export default function ProductsClient({ initialProducts }: { initialProducts: a
                     className="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="aspect-square bg-slate-50 relative overflow-hidden flex items-center justify-center p-6">
-                      <img 
-                        src={imageUrl} 
+                      <Base64Image 
+                        base64={product.base64Image}
+                        mime={product.image_mime}
                         alt={product.name} 
                         className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-md"
+                        fallback="https://via.placeholder.com/400?text=Sem+Foto"
                       />
                     </div>
                     <div className="p-6 flex flex-col flex-1">
@@ -196,11 +195,11 @@ export default function ProductsClient({ initialProducts }: { initialProducts: a
                   <button
                     key={i}
                     onClick={() => setCurrentPage(i + 1)}
-                    className={\`w-10 h-10 rounded-lg font-semibold transition-colors \${
+                    className={`w-10 h-10 rounded-lg font-semibold transition-colors \${
                       currentPage === i + 1 
                         ? 'bg-pink-600 text-white shadow-md' 
                         : 'border border-slate-200 text-slate-600 hover:bg-slate-50'
-                    }\`}
+                    }`}
                   >
                     {i + 1}
                   </button>
