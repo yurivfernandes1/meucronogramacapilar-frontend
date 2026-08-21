@@ -12,13 +12,40 @@ export const metadata: Metadata = {
     default: 'Meu Cronograma Capilar - Dicas e Rotinas para seus Cabelos',
   },
   description: "Aprenda a montar seu cronograma capilar em casa. Avaliações de produtos, cronogramas para crescimento, hidratação e muito mais.",
+  keywords: ['cronograma capilar', 'cabelo', 'hidratação', 'nutrição', 'reconstrução', 'cuidados capilares', 'rotina capilar'],
+  authors: [{ name: 'Meu Cronograma Capilar', url: 'https://meucronogramacapilar.com.br' }],
+  creator: 'Meu Cronograma Capilar',
+  metadataBase: new URL('https://meucronogramacapilar.com.br'),
   openGraph: {
-    title: 'Meu Cronograma Capilar',
-    description: 'Dicas, guias completos e produtos recomendados para o seu cronograma capilar perfeito.',
+    title: 'Meu Cronograma Capilar — Cuide dos seus Fios',
+    description: 'Dicas, guias completos e produtos recomendados para o seu cronograma capilar perfeito. Hidratação, nutrição e reconstrução em casa.',
     url: 'https://meucronogramacapilar.com.br',
     siteName: 'Meu Cronograma Capilar',
     locale: 'pt_BR',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Meu Cronograma Capilar — Cuide dos seus Fios',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Meu Cronograma Capilar — Cuide dos seus Fios',
+    description: 'Dicas e rotinas para o seu cronograma capilar perfeito.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+    },
   },
 }
 
