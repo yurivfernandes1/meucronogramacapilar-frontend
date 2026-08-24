@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { Search, ChevronLeft, ChevronRight, SlidersHorizontal, X } from 'lucide-react'
 import Base64Image from '@/components/Base64Image'
+import { supabase } from '@/lib/supabase'
 
 export default function ProductsClient({ initialProducts }: { initialProducts: any[] }) {
   const [searchTerm, setSearchTerm] = useState('')
