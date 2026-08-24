@@ -145,7 +145,16 @@ export default function ProductsClient({ initialProducts }: { initialProducts: a
                     href={product.shopee_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    onClick={() => {
+                      try {
+                        supabase.from('link_clicks').insert({
+                          blog_id: process.env.NEXT_PUBLIC_BLOG_ID || 'dummy',
+                          product_id: product.id,
+                          clicked_url: product.shopee_url || '',
+                        }).then()
+                      } catch (e) {}
+                    }}
+                    className="group bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="aspect-square bg-slate-50 relative overflow-hidden flex items-center justify-center p-6">
                       <Base64Image 

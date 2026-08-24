@@ -16,6 +16,7 @@ export function TrackingLink({ blogId, postId, productId, onClick, href, ...prop
         blog_id: blogId,
         post_id: postId || null,
         product_id: productId || null,
+        clicked_url: href || '',
       }).then()
     } catch (err) {
       console.error('Failed to track click', err)

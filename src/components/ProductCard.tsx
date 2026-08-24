@@ -25,6 +25,7 @@ export default function ProductCard({ product, postId }: { product: ProductProps
         blog_id: blogId,
         post_id: postId,
         product_id: product.id,
+        clicked_url: product.shopee_url || '',
       }).then()
     } catch (e) {
       // Ignora erros para não travar a navegação
