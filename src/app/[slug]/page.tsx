@@ -137,10 +137,21 @@ export default async function PostPage({ params, searchParams }: Props) {
       }
     },
     datePublished: post.created_at,
+    dateModified: post.updated_at || post.created_at,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${baseUrl}/${decodedSlug}`
     }
+  }
+
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: post.category || 'Artigos', item: `${baseUrl}/?categoria=${encodeURIComponent(post.category || '')}` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/${decodedSlug}` },
+    ]
   }
 
   return (
@@ -148,6 +159,10 @@ export default async function PostPage({ params, searchParams }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       <TrackingWrapper postId={post.id} blogId={blogId} />
       

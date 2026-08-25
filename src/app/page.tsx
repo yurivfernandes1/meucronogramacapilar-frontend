@@ -42,8 +42,32 @@ export default async function Home() {
   const allTags = allPostsMeta?.flatMap(p => p.tags || []) || []
   const topTags = Array.from(new Set(allTags)).slice(0, 8)
 
+  const organizationLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Meu Cronograma Capilar',
+    url: 'https://meucronogramacapilar.com.br',
+    logo: 'https://meucronogramacapilar.com.br/logo.png',
+    description: 'Aprenda a montar seu cronograma capilar em casa. Avaliações de produtos, dicas de hidratação, nutrição e reconstrução.',
+    sameAs: [],
+  }
+
+  const websiteLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Meu Cronograma Capilar',
+    url: 'https://meucronogramacapilar.com.br',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://meucronogramacapilar.com.br/?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  }
+
   return (
     <div className="min-h-screen bg-pink-50/30">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }} />
       {/* Premium Hero Section */}
       {heroPost && (
         <section className="relative pt-20 pb-32 lg:pt-32 lg:pb-48 overflow-hidden">
